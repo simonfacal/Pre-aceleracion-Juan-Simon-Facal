@@ -40,7 +40,6 @@ public class GeneroMapper {
         {
             dtos.add(this.generoEntity2DTO(entity));
         }
-
         return dtos;
     }
 

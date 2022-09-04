@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name="pelicula")
 @Getter @Setter
-@SQLDelete(sql="UPDATE icon SET deleted= true WHERE id=?")
+@SQLDelete(sql="UPDATE pelicula SET deleted= true WHERE id=?")
 @Where(clause="deleted=false")
 public class PeliculaEntity {
     @Id
@@ -26,9 +26,11 @@ public class PeliculaEntity {
     @DateTimeFormat(pattern="yyyy/MM/dd")
     private LocalDate fechaCreacion;
     private int calificacion;
-    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="genero_id", insertable=false, updatable = false)
     private GeneroEntity genero;
+    @Column(name="genero_id")
+    private Long generoId;
     @ManyToMany(
             cascade= {
                     CascadeType.PERSIST,
