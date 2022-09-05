@@ -4,13 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class PeliculaFiltersDTO {
+public class MovieFiltersDTO {
 
     private String name;
     private Long genre;
     private String order;
 
-    public PeliculaFiltersDTO(String name, Long genre, String order) {
+    public MovieFiltersDTO(String name, Long genre, String order) {
         this.name = name;
         this.genre = genre;
         this.order = order;

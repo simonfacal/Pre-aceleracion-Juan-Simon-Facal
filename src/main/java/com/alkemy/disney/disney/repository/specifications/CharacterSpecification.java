@@ -1,10 +1,10 @@
 package com.alkemy.disney.disney.repository.specifications;
 
-import com.alkemy.disney.disney.entity.PeliculaEntity;
+import com.alkemy.disney.disney.entity.MovieEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
-import com.alkemy.disney.disney.dto.PersonajeFiltersDTO;
-import com.alkemy.disney.disney.entity.PersonajeEntity;
+import com.alkemy.disney.disney.dto.CharacterFiltersDTO;
+import com.alkemy.disney.disney.entity.CharacterEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 
 @Component
-public class PersonajeSpecification {
+public class CharacterSpecification {
 
-    public Specification<PersonajeEntity> getByFilters(PersonajeFiltersDTO filtersDTO)
+    public Specification<CharacterEntity> getByFilters(CharacterFiltersDTO filtersDTO)
     {
         return(root, query, criteriaBuilder) -> {
 
@@ -27,7 +27,7 @@ public class PersonajeSpecification {
             {
                 predicates.add(
                         criteriaBuilder.like(
-                                criteriaBuilder.lower(root.get("nombre")),
+                                criteriaBuilder.lower(root.get("name")),
                                 "%" + filtersDTO.getName().toLowerCase() + "%"
                         )
                 );
@@ -38,7 +38,7 @@ public class PersonajeSpecification {
             {
                 predicates.add(
                         criteriaBuilder.equal(
-                                root.get("edad"),
+                                root.get("age"),
                         filtersDTO.getAge()
                         )
                 );
@@ -47,7 +47,7 @@ public class PersonajeSpecification {
 
             if (!CollectionUtils.isEmpty(filtersDTO.getMovies()))
             {
-                Join<PeliculaEntity, PersonajeEntity> join = root.join("peliculas", JoinType.INNER);
+                Join<MovieEntity, CharacterEntity> join = root.join("movies", JoinType.INNER);
                 Expression<String> moviesId = join.get("id");
                 predicates.add(moviesId.in(filtersDTO.getMovies()));
             }

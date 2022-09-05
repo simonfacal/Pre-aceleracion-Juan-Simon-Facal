@@ -1,16 +1,18 @@
 package com.alkemy.disney.disney.repository.specifications;
 
-import com.alkemy.disney.disney.dto.PeliculaFiltersDTO;
-import com.alkemy.disney.disney.entity.PeliculaEntity;
+import com.alkemy.disney.disney.dto.MovieFiltersDTO;
+import com.alkemy.disney.disney.entity.MovieEntity;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PeliculaSpecification {
+@Component
+public class MovieSpecification {
 
-    public Specification<PeliculaEntity> getByFilters(PeliculaFiltersDTO filtersDTO) {
+    public Specification<MovieEntity> getByFilters(MovieFiltersDTO filtersDTO) {
         return (root, query, criteriaBuilder) -> {
 
             List<Predicate> predicates = new ArrayList<>();
@@ -19,18 +21,18 @@ public class PeliculaSpecification {
             {
                 predicates.add(
                         criteriaBuilder.like(
-                                criteriaBuilder.lower(root.get("nombre")),
+                                criteriaBuilder.lower(root.get("title")),
                                 "%" + filtersDTO.getName().toLowerCase() + "%"
                         )
                 );
 
             }
 
-            if (0 < filtersDTO.getGenre())
+            if ( filtersDTO.getGenre()!=null &&0 < filtersDTO.getGenre())
             {
                 predicates.add(
                         criteriaBuilder.equal(
-                                root.get("generoId"),
+                                root.get("genreId"),
                                 filtersDTO.getGenre()
                         )
                 );
@@ -40,7 +42,7 @@ public class PeliculaSpecification {
             query.distinct(true);
 
             //Order resolver
-            String orderByField = "nombre";
+            String orderByField = "title";
             query.orderBy(
                     filtersDTO.isASC() ?
                             criteriaBuilder.asc(root.get(orderByField)) :

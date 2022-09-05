@@ -1,6 +1,6 @@
 package com.alkemy.disney.disney.repository;
 
-import com.alkemy.disney.disney.entity.PersonajeEntity;
+import com.alkemy.disney.disney.entity.MovieEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IPersonajeRepository extends JpaRepository<PersonajeEntity,Long> {
-    List<PersonajeEntity> findAll(Specification<PersonajeEntity>spec);
+public interface IMovieRepository extends JpaRepository<MovieEntity,Long> {
+    List<MovieEntity>findAll(Specification<MovieEntity>spec);
 }

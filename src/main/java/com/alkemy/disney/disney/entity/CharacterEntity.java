@@ -11,21 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="personaje")
+@Table(name="characters")
 @Getter @Setter
-@SQLDelete(sql="UPDATE personaje SET deleted= true WHERE id=?")
+@SQLDelete(sql="UPDATE characters SET deleted= true WHERE id=?")
 @Where(clause="deleted=false")
-public class PersonajeEntity {
+public class CharacterEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String imagen;
-    private String nombre;
-    private int edad;
-    private double peso;
-    private String historia;
-    @ManyToMany(mappedBy = "personajes")
-    private List<PeliculaEntity> peliculas=new ArrayList<>();
+    private String image;
+    private String name;
+    private int age;
+    private double weight;
+    private String history;
+    @ManyToMany(mappedBy = "characters")
+    private List<MovieEntity> movies=new ArrayList<>();
     private boolean deleted=Boolean.FALSE;
 
 }

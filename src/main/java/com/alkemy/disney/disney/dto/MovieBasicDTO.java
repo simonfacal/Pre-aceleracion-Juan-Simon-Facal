@@ -6,9 +6,9 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Getter @Setter
-public class PeliculaBasicDTO {
+public class MovieBasicDTO {
     private Long id;
-    private String imagen;
-    private String titulo;
-    private LocalDate fechaCreacion;
+    private String image;
+    private String title;
+    private LocalDate creationDate;
 }

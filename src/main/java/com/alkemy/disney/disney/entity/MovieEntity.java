@@ -12,36 +12,36 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="pelicula")
+@Table(name="movie")
 @Getter @Setter
-@SQLDelete(sql="UPDATE pelicula SET deleted= true WHERE id=?")
+@SQLDelete(sql="UPDATE movie SET deleted= true WHERE id=?")
 @Where(clause="deleted=false")
-public class PeliculaEntity {
+public class MovieEntity {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    private String imagen;
-    private String titulo;
-    @Column(name="fecha_creacion")
+    private String image;
+    private String title;
+    @Column(name="creation_date")
     @DateTimeFormat(pattern="yyyy/MM/dd")
-    private LocalDate fechaCreacion;
-    private int calificacion;
+    private LocalDate creationDate;
+    private int calification;
     @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="genero_id", insertable=false, updatable = false)
-    private GeneroEntity genero;
-    @Column(name="genero_id")
-    private Long generoId;
+    @JoinColumn(name="genre_id", insertable=false, updatable = false)
+    private GenreEntity genre;
+    @Column(name="genre_id")
+    private Long genreId;
     @ManyToMany(
             cascade= {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(
-            name="personaje_pelicula",
-            joinColumns = @JoinColumn(name="pelicula_id"),
-            inverseJoinColumns = @JoinColumn(name="personaje_id"))
+            name="character_movie",
+            joinColumns = @JoinColumn(name="movie_id"),
+            inverseJoinColumns = @JoinColumn(name="character_id"))
 
-    private Set<PersonajeEntity> personajes=new HashSet<>();
+    private Set<CharacterEntity> characters=new HashSet<>();
     private boolean deleted=Boolean.FALSE;
 
 }
