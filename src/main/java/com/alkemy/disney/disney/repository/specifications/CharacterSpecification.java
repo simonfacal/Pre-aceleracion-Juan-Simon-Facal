@@ -34,7 +34,7 @@ public class CharacterSpecification {
 
             }
 
-            if(0<filtersDTO.getAge())
+            if(filtersDTO.getAge()!=null && 0<filtersDTO.getAge())
             {
                 predicates.add(
                         criteriaBuilder.equal(

@@ -13,6 +13,6 @@ public interface ICharacterService {
     public CharacterDTO update(Long id, CharacterDTO dto);
     public List<CharacterBasicDTO> getAll();
     public CharacterDTO getDetailsById(Long id);
-    public List<CharacterBasicDTO> getByFilters(String name, int age, Set<Long>movies);
+    public List<CharacterBasicDTO> getByFilters(String name, Integer age, Set<Long>movies);
 
 }

@@ -78,7 +78,7 @@ public class CharacterService implements ICharacterService {
     }
 
     @Override
-    public List<CharacterBasicDTO> getByFilters(String name, int age, Set<Long> movies) {
+    public List<CharacterBasicDTO> getByFilters(String name, Integer age, Set<Long> movies) {
         CharacterFiltersDTO filtersDTO=new CharacterFiltersDTO(name,age,movies);
         List<CharacterEntity>entities=characterRepository.findAll(characterSpecification.getByFilters(filtersDTO));
         List<CharacterBasicDTO> dtos= characterMapper.characterEntitySet2BasicDTOList(entities);

@@ -52,7 +52,7 @@ public class CharacterController {
     @GetMapping
     public ResponseEntity<List<CharacterBasicDTO>>getDetailsByFilters(
             @RequestParam(required=false) String name,
-            @RequestParam(required=false) int age,
+            @RequestParam(required=false) Integer age,
             @RequestParam(required=false) Set<Long> movies
     )
     {

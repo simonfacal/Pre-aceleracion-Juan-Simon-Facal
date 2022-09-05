@@ -12,7 +12,7 @@ public class CharacterDTO {
     private Long id;
     private String image;
     private String name;
-    private int age;
+    private Integer age;
     private double weight;
     private String history;
     private List<MovieDTO> movies =new ArrayList<>();
