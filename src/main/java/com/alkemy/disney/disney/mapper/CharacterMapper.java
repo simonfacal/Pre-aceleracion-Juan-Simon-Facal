@@ -27,14 +27,6 @@ public class CharacterMapper {
         characterEntity.setName(dto.getName());
         characterEntity.setImage(dto.getImage());
         characterEntity.setWeight(dto.getWeight());
-        List<MovieEntity>movies=new ArrayList<>();
-        for (int i=0;i<dto.getMovies().size();i++)
-        {
-            Optional<MovieEntity> movie=movieRepository.findById(dto.getMovies().get(i).getId());
-            if(movie.isPresent())
-                movies.add(movie.get());
-        }
-        characterEntity.setMovies(movies);
 
         return characterEntity;
     }

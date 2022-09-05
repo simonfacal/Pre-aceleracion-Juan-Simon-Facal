@@ -4,12 +4,14 @@ import com.alkemy.disney.disney.dto.CharacterDTO;
 import com.alkemy.disney.disney.dto.MovieBasicDTO;
 import com.alkemy.disney.disney.dto.MovieDTO;
 import com.alkemy.disney.disney.dto.MovieFiltersDTO;
+import com.alkemy.disney.disney.entity.GenreEntity;
 import com.alkemy.disney.disney.entity.MovieEntity;
 import com.alkemy.disney.disney.entity.CharacterEntity;
 import com.alkemy.disney.disney.exception.ParamNotFound;
 import com.alkemy.disney.disney.mapper.CharacterMapper;
 import com.alkemy.disney.disney.mapper.GenreMapper;
 import com.alkemy.disney.disney.mapper.MovieMapper;
+import com.alkemy.disney.disney.repository.IGenreRepository;
 import com.alkemy.disney.disney.repository.IMovieRepository;
 import com.alkemy.disney.disney.repository.ICharacterRepository;
 import com.alkemy.disney.disney.repository.specifications.MovieSpecification;
@@ -28,6 +30,9 @@ public class MovieService implements IMovieService {
     private ICharacterRepository characterRepository;
 
     @Autowired
+    private IGenreRepository genreRepository;
+
+    @Autowired
     private GenreMapper genreMapper;
 
     @Autowired
@@ -39,6 +44,7 @@ public class MovieService implements IMovieService {
     @Autowired
     private MovieSpecification movieSpecification;
 
+
     @Override
     public MovieDTO save(MovieDTO dto) {
         MovieEntity entity= movieMapper.movieDTO2Entity(dto);
@@ -47,10 +53,8 @@ public class MovieService implements IMovieService {
         //a cada personaje le añado la pelicula que acabo de crear y lo updateo
         for (int i=0;i<characters.size();i++)
         {
-            characters.get(i).getMovies().add(movieMapper.movieEntity2DTO(entitySaved,false));
-            characterRepository.save(characterMapper.characterDTO2Entity(characters.get(i)));
+            this.addCharacter(entitySaved.getId(),characters.get(i).getId());
         }
-
         MovieDTO result= movieMapper.movieEntity2DTO(entitySaved,true);
         return result;
     }
@@ -60,8 +64,10 @@ public class MovieService implements IMovieService {
         if (!movie.isPresent())
             throw new ParamNotFound("Id movie no valido");
         MovieEntity movieSaved = movie.get();
-        if(dto.getGenre()!=null)
-            movieSaved.setGenre(genreMapper.generoDTO2Entity(dto.getGenre()));
+
+        Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
+        if(genero.isPresent())
+            movieSaved.setGenre(genero.get());
         movieSaved.setCalification(dto.getCalification());
         movieSaved.setTitle(dto.getTitle());
         movieSaved.setImage(dto.getImage());
@@ -115,8 +121,15 @@ public class MovieService implements IMovieService {
             else
                 if(!character.isPresent())
                     throw new ParamNotFound("Id character no valido");
+    //si la pelicula no contiene al personaje, lo añade
+       if (!movie.get().getCharacters().contains(character.get()))
+       {
            movie.get().getCharacters().add(character.get());
-        movieRepository.save(movie.get());
+           movieRepository.save(movie.get());
+       }
+       character.get().getMovies().add(movie.get());
+       characterRepository.save(character.get());
+
     }
 
     @Override
@@ -132,6 +145,8 @@ public class MovieService implements IMovieService {
                 if(!character.isPresent())
                     throw new ParamNotFound("Id character no valido");
         movie.get().getCharacters().remove(character.get());
+        character.get().getMovies().remove(movie.get());
+        characterRepository.save(character.get());
         movieRepository.save(movie.get());
 
     }

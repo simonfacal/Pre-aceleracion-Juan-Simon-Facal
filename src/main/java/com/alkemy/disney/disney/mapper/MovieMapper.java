@@ -34,15 +34,13 @@ public class MovieMapper {
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setImage(dto.getImage());
         movieEntity.setCreationDate(dto.getCreationDate());
-        for (int i=0;i<dto.getCharacters().size();i++)
-        {
-            Optional<CharacterEntity> character=characterRepository.findById(dto.getCharacters().get(i).getId());
-            if(character.isPresent())
-                movieEntity.getCharacters().add(character.get());
-        }
+        System.out.println("EL ID DE GENERO ES"+dto.getGenreId());
+        Set<CharacterEntity>characters=characterMapper.characterDTOList2Entity(dto.getCharacters());
+        movieEntity.setCharacters(characters);
         movieEntity.setGenreId(dto.getGenreId());
         Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
-        movieEntity.setGenre(genero.get());
+        if(genero.isPresent())
+            movieEntity.setGenre(genero.get());
         return movieEntity;
     }
 
