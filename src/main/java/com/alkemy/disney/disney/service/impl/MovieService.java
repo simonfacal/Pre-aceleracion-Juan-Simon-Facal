@@ -62,19 +62,7 @@ public class MovieService implements IMovieService {
     }
     @Override
     public MovieDTO update(Long id, MovieDTO dto) {
-        Optional<MovieEntity> movie = movieRepository.findById(id);
-        if (!movie.isPresent())
-            throw new ParamNotFound("Id movie no valido");
-        MovieEntity movieSaved = movie.get();
-
-        Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
-        if(genero.isPresent())
-            movieSaved.setGenre(genero.get());
-        movieSaved.setCalification(dto.getCalification());
-        movieSaved.setTitle(dto.getTitle());
-        movieSaved.setImage(dto.getImage());
-        movieSaved.setCreationDate(dto.getCreationDate());
-        movieSaved.setGenreId(dto.getGenreId());
+        MovieEntity movieSaved=movieMapper.movieDTOUpdated2Entity(dto,id);
         movieRepository.save(movieSaved);
         MovieDTO result = movieMapper.movieEntity2DTO(movieSaved, true);
         return result;

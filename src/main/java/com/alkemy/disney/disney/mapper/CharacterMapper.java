@@ -4,7 +4,6 @@ import com.alkemy.disney.disney.dto.MovieDTO;
 import com.alkemy.disney.disney.dto.CharacterBasicDTO;
 import com.alkemy.disney.disney.dto.CharacterDTO;
 import com.alkemy.disney.disney.entity.CharacterEntity;
-import com.alkemy.disney.disney.entity.MovieEntity;
 import com.alkemy.disney.disney.repository.IMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +29,8 @@ public class CharacterMapper {
 
         return characterEntity;
     }
+
+
 
     public CharacterDTO characterEntity2DTO(CharacterEntity entity, boolean loadMovies) {
         CharacterDTO characterDTO = new CharacterDTO();

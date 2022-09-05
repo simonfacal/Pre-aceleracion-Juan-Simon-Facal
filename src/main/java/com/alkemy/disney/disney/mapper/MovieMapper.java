@@ -8,8 +8,10 @@ import com.alkemy.disney.disney.dto.CharacterDTO;
 import com.alkemy.disney.disney.entity.GenreEntity;
 import com.alkemy.disney.disney.entity.MovieEntity;
 import com.alkemy.disney.disney.entity.CharacterEntity;
+import com.alkemy.disney.disney.exception.ParamNotFound;
 import com.alkemy.disney.disney.repository.ICharacterRepository;
 import com.alkemy.disney.disney.repository.IGenreRepository;
+import com.alkemy.disney.disney.repository.IMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class MovieMapper {
     private IGenreRepository genreRepository;
     @Autowired
     private ICharacterRepository characterRepository;
+    @Autowired
+    private IMovieRepository movieRepository;
     @Autowired
     private GenreMapper genreMapper;
 
@@ -44,6 +48,23 @@ public class MovieMapper {
             movieEntity.setGenre(genero.get());
         return movieEntity;
     }
+
+    public MovieEntity movieDTOUpdated2Entity(MovieDTO dto,Long id)
+    {
+        Optional<MovieEntity> movieSaved=movieRepository.findById(id);
+        if (!movieSaved.isPresent())
+            throw new ParamNotFound("Id movie no valido");
+        Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
+        if(genero.isPresent())
+            movieSaved.get().setGenre(genero.get());
+        movieSaved.get().setCalification(dto.getCalification());
+        movieSaved.get().setTitle(dto.getTitle());
+        movieSaved.get().setImage(dto.getImage());
+        movieSaved.get().setCreationDate(dto.getCreationDate());
+        movieSaved.get().setGenreId(dto.getGenreId());
+        return movieSaved.get();
+    }
+
 
     public MovieDTO movieEntity2DTO(MovieEntity entity, boolean loadCharacters) {
         MovieDTO movieDTO = new MovieDTO();

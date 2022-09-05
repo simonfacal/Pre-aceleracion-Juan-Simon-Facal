@@ -54,17 +54,13 @@ public class CharacterService implements ICharacterService {
     @Override
     public CharacterDTO update(Long id, CharacterDTO dto) {
 
-        Optional<CharacterEntity> personaje=characterRepository.findById(id);
-        if (!personaje.isPresent())
-            throw new ParamNotFound("Id personaje no valido");
-        CharacterEntity personajeGuardado=personaje.get();
-        personajeGuardado.setImage(dto.getImage());
-        personajeGuardado.setWeight(dto.getWeight());
-        personajeGuardado.setAge(dto.getAge());
-        personajeGuardado.setName(dto.getName());
-        personajeGuardado.setHistory(dto.getHistory());
-        characterRepository.save(personajeGuardado);
-        CharacterDTO result= characterMapper.characterEntity2DTO(personajeGuardado,true);
+        Optional<CharacterEntity> character=characterRepository.findById(id);
+        if (!character.isPresent())
+            throw new ParamNotFound("Id character no valido");
+        CharacterEntity characterSaved=characterMapper.characterDTO2Entity(dto);
+        characterSaved.setId(id);
+        characterRepository.save(characterSaved);
+        CharacterDTO result= characterMapper.characterEntity2DTO(characterSaved,true);
         return result;
 
     }
