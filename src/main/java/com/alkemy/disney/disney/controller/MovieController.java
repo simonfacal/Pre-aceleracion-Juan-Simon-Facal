@@ -40,8 +40,8 @@ public class MovieController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id)
     {
-        movieService.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+         movieService.delete(id);
+         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PutMapping("/{id}")

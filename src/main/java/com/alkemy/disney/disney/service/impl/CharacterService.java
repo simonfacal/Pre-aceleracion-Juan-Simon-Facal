@@ -46,7 +46,8 @@ public class CharacterService implements ICharacterService {
 
     @Override
     public void delete(Long id) {
-
+        if (!characterRepository.existsById(id))
+            throw new ParamNotFound("Id character no valido");
         characterRepository.deleteById(id);
     }
 

@@ -17,6 +17,8 @@ import com.alkemy.disney.disney.repository.ICharacterRepository;
 import com.alkemy.disney.disney.repository.specifications.MovieSpecification;
 import com.alkemy.disney.disney.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -79,8 +81,10 @@ public class MovieService implements IMovieService {
     }
     @Override
     public void delete(Long id) {
-
+        if (!movieRepository.existsById(id))
+            throw new ParamNotFound("Id movie  no valido");
         movieRepository.deleteById(id);
+
     }
 
     @Override

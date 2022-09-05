@@ -26,6 +26,8 @@ public class MovieMapper {
     private IGenreRepository genreRepository;
     @Autowired
     private ICharacterRepository characterRepository;
+    @Autowired
+    private GenreMapper genreMapper;
 
 
     public MovieEntity movieDTO2Entity(MovieDTO dto) {
@@ -34,7 +36,6 @@ public class MovieMapper {
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setImage(dto.getImage());
         movieEntity.setCreationDate(dto.getCreationDate());
-        System.out.println("EL ID DE GENERO ES"+dto.getGenreId());
         Set<CharacterEntity>characters=characterMapper.characterDTOList2Entity(dto.getCharacters());
         movieEntity.setCharacters(characters);
         movieEntity.setGenreId(dto.getGenreId());
@@ -51,6 +52,8 @@ public class MovieMapper {
         movieDTO.setCalification(entity.getCalification());
         movieDTO.setTitle(entity.getTitle());
         movieDTO.setImage(entity.getImage());
+        movieDTO.setGenreId(entity.getGenreId());
+        movieDTO.setGenre(genreMapper.generoEntity2DTO(entity.getGenre()));
         movieDTO.setCreationDate(entity.getCreationDate());
         if (loadCharacters) {
             List<CharacterDTO> characterDTOS = this.characterMapper.characterEntitySet2DTOList(entity.getCharacters(), false);
