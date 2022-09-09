@@ -36,33 +36,33 @@ public class MovieMapper {
 
     public MovieEntity movieDTO2Entity(MovieDTO dto) {
         MovieEntity movieEntity = new MovieEntity();
+        this.refreshValues(movieEntity,dto);
+        Set<CharacterEntity>characters=characterMapper.characterDTOList2Entity(dto.getCharacters());
+        movieEntity.setCharacters(characters);
+
+
+        return movieEntity;
+    }
+    public MovieEntity movieDTOUpdated2Entity(MovieDTO dto,Long id)
+    {
+        Optional<MovieEntity> movieEntity=movieRepository.findById(id);
+        if (!movieEntity.isPresent())
+            throw new ParamNotFound("Id movie not valid");
+        this.refreshValues(movieEntity.get(),dto);
+        return movieEntity.get();
+    }
+
+    public void refreshValues(MovieEntity movieEntity, MovieDTO dto)
+    {
+        Optional<GenreEntity> genre= genreRepository.findById(dto.getGenreId());
+        if(genre.isPresent())
+            movieEntity.setGenre(genre.get());
+        movieEntity.setGenreId(dto.getGenreId());
         movieEntity.setCalification(dto.getCalification());
         movieEntity.setTitle(dto.getTitle());
         movieEntity.setImage(dto.getImage());
         movieEntity.setCreationDate(dto.getCreationDate());
-        Set<CharacterEntity>characters=characterMapper.characterDTOList2Entity(dto.getCharacters());
-        movieEntity.setCharacters(characters);
-        movieEntity.setGenreId(dto.getGenreId());
-        Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
-        if(genero.isPresent())
-            movieEntity.setGenre(genero.get());
-        return movieEntity;
-    }
 
-    public MovieEntity movieDTOUpdated2Entity(MovieDTO dto,Long id)
-    {
-        Optional<MovieEntity> movieSaved=movieRepository.findById(id);
-        if (!movieSaved.isPresent())
-            throw new ParamNotFound("Id movie no valido");
-        Optional<GenreEntity> genero= genreRepository.findById(dto.getGenreId());
-        if(genero.isPresent())
-            movieSaved.get().setGenre(genero.get());
-        movieSaved.get().setCalification(dto.getCalification());
-        movieSaved.get().setTitle(dto.getTitle());
-        movieSaved.get().setImage(dto.getImage());
-        movieSaved.get().setCreationDate(dto.getCreationDate());
-        movieSaved.get().setGenreId(dto.getGenreId());
-        return movieSaved.get();
     }
 
 
@@ -82,18 +82,6 @@ public class MovieMapper {
         }
 
         return movieDTO;
-    }
-
-
-    public void movieEntityRefreshValues(MovieEntity entity, MovieDTO movieDTO) {
-        entity.setCalification(movieDTO.getCalification());
-        entity.setTitle(movieDTO.getTitle());
-        entity.setImage(movieDTO.getImage());
-        //no se si debo setear el id de genero
-        entity.setGenreId(movieDTO.getGenreId());
-
-        entity.setCreationDate(movieDTO.getCreationDate());
-
     }
 
     public List<MovieEntity> movieDTOList2Entity(List<MovieDTO> dtos) {

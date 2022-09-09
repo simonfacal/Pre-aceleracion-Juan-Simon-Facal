@@ -70,7 +70,7 @@ public class MovieService implements IMovieService {
     @Override
     public void delete(Long id) {
         if (!movieRepository.existsById(id))
-            throw new ParamNotFound("Id movie  no valido");
+            throw new ParamNotFound("Id movie  not valid");
         movieRepository.deleteById(id);
 
     }
@@ -86,7 +86,7 @@ public class MovieService implements IMovieService {
     public MovieDTO getDetailsById(Long id) {
         Optional<MovieEntity> movie= movieRepository.findById(id);
         if(!movie.isPresent())
-            throw new ParamNotFound("Id movie no valido");
+            throw new ParamNotFound("Id movie not valid");
         MovieDTO result= movieMapper.movieEntity2DTO(movie.get(),true);
         return result;
     }
@@ -106,13 +106,13 @@ public class MovieService implements IMovieService {
         Optional<MovieEntity> movie= movieRepository.findById(idMovie);
         Optional<CharacterEntity> character= characterRepository.findById(idCharacter);
         if (!movie.isPresent() && !character.isPresent())
-            throw new ParamNotFound("Id movie e Id character no validos");
+            throw new ParamNotFound("Id movie and Id character not valid");
         else
             if(!movie.isPresent())
-                throw new ParamNotFound("Id movie no valido");
+                throw new ParamNotFound("Id movie not valid");
             else
                 if(!character.isPresent())
-                    throw new ParamNotFound("Id character no valido");
+                    throw new ParamNotFound("Id character not valid");
     //si la pelicula no contiene al personaje, lo añade
        if (!movie.get().getCharacters().contains(character.get()))
        {
@@ -129,13 +129,13 @@ public class MovieService implements IMovieService {
         Optional<MovieEntity> movie= movieRepository.findById(idMovie);
         Optional<CharacterEntity> character= characterRepository.findById(idCharacter);
         if (!movie.isPresent() && !character.isPresent())
-            throw new ParamNotFound("Id movie e Id character no validos");
+            throw new ParamNotFound("Id movie and Id character not valid");
         else
             if(!movie.isPresent())
-                throw new ParamNotFound("Id movie no valido");
+                throw new ParamNotFound("Id movie not valid");
             else
                 if(!character.isPresent())
-                    throw new ParamNotFound("Id character no valido");
+                    throw new ParamNotFound("Id character not valid");
         movie.get().getCharacters().remove(character.get());
         character.get().getMovies().remove(movie.get());
         characterRepository.save(character.get());
