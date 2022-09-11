@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class UserAuthController {
@@ -30,14 +32,14 @@ public class UserAuthController {
     private JwtUtils jwtTokenUtil;
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse>singUp(@RequestBody UserDTO user) throws Exception
+    public ResponseEntity<AuthenticationResponse>singUp(@Valid @RequestBody UserDTO user) throws Exception
     {
         userDetailsService.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> singIn(@RequestBody AuthenticationRequest authRequest) throws Exception {
+    public ResponseEntity<AuthenticationResponse> singIn(@Valid @RequestBody AuthenticationRequest authRequest) throws Exception {
         UserDetails userDetails;
         try {
             Authentication auth = authenticationManager.authenticate(

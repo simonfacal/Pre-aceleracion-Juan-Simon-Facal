@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="characters")
@@ -27,5 +28,6 @@ public class CharacterEntity {
     @ManyToMany(mappedBy = "characters")
     private List<MovieEntity> movies=new ArrayList<>();
     private boolean deleted=Boolean.FALSE;
+
 
 }

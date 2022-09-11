@@ -47,7 +47,7 @@ public class CharacterService implements ICharacterService {
     @Override
     public void delete(Long id) {
         if (!characterRepository.existsById(id))
-            throw new ParamNotFound("Id character no valido");
+            throw new ParamNotFound("Id character not valid");
         characterRepository.deleteById(id);
     }
 
@@ -56,7 +56,7 @@ public class CharacterService implements ICharacterService {
 
         Optional<CharacterEntity> character=characterRepository.findById(id);
         if (!character.isPresent())
-            throw new ParamNotFound("Id character no valido");
+            throw new ParamNotFound("Id character not valid");
         CharacterEntity characterSaved=characterMapper.characterDTO2Entity(dto);
         characterSaved.setId(id);
         characterRepository.save(characterSaved);
@@ -67,10 +67,10 @@ public class CharacterService implements ICharacterService {
 
     @Override
     public CharacterDTO getDetailsById(Long id) {
-        Optional<CharacterEntity> personaje=characterRepository.findById(id);
-        if (!personaje.isPresent())
-            throw new ParamNotFound("Id personaje no valido");
-        CharacterDTO result= characterMapper.characterEntity2DTO(personaje.get(),true);
+        Optional<CharacterEntity> character=characterRepository.findById(id);
+        if (!character.isPresent())
+            throw new ParamNotFound("Id character not valid");
+        CharacterDTO result= characterMapper.characterEntity2DTO(character.get(),true);
         return result;
     }
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class MovieController {
     private IMovieService movieService;
 
     @PostMapping
-    public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movie) {
+    public ResponseEntity<MovieDTO> save(@Valid @RequestBody MovieDTO movie) {
         MovieDTO movieSaved = movieService.save(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(movieSaved);
 
@@ -45,7 +46,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MovieDTO> update(@PathVariable Long id, @RequestBody MovieDTO dto)
+    public ResponseEntity<MovieDTO> update(@PathVariable Long id, @Valid @RequestBody MovieDTO dto)
     {
         MovieDTO movieUpdated= movieService.update(id,dto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(movieUpdated);
