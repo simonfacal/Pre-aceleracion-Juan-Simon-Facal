@@ -52,13 +52,6 @@ public class MovieController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(movieUpdated);
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<MovieBasicDTO>> getAll()
-    {
-        List<MovieBasicDTO> movies= movieService.getAll();
-        return ResponseEntity.ok(movies);
-    }
-
     @GetMapping()
     public ResponseEntity<List<MovieBasicDTO>>getDetailsByFilters(
             @RequestParam(required=false) String name,

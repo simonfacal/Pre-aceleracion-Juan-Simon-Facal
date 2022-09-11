@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "9e5a3cc4-4ba7-4611-b760-130c9402b02d",
+		"name": "Alkemy-DisneyAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22267354"
+	},
+	"item": [
+		{
+			"name": "genres",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Ciencia Ficcion\",\r\n    \"image\":\"usr/tmp/img5.jpg\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "genres",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "characters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\":\"url/img/33\",\r\n    \"name\":\"Sullivan\",\r\n    \"age\":33,\r\n    \"weight\":80,\r\n    \"history\":\"Monstruo que trabaja en Monsters Inc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "characters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\":\"url/img/10\",\r\n    \"name\":\"Dash\",\r\n    \"age\":10,\r\n    \"weight\":38,\r\n    \"history\":\"Hijo de Mr Increible\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/characters/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "characters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charactersDetailsById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "charactersDetailsByFilters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "movies",
+							"value": "1,3",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\":\"url/img/12\",\r\n    \"title\":\"Alicia en el pais de las maravillas\",\r\n    \"creationDate\":\"1951-08-17\",\r\n    \"calification\":3,\r\n    \"characters\":\r\n    [\r\n         {\r\n        \"image\":\"url/img/60\",\r\n        \"name\":\"Reina de Corazones\",\r\n        \"age\":60,\r\n        \"weight\":70,\r\n        \"history\":\"Reina del mundo al que llega Alicia\"\r\n        }\r\n\r\n    ],\r\n   \"genreId\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"image\":\"url/img/60\",\r\n    \"title\":\"Los Increibles\",\r\n    \"creationDate\":\"2004-12-02\",\r\n    \"calification\":4,\r\n    \"genreId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "moviesDetailsById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"imagen\":\"url/img/60\",\r\n    \"titulo\":\"Los Increibles\",\r\n    \"fechaCreacion\":\"2004-03-10\",\r\n    \"calificacion\":5,\r\n    \"personajes\":\r\n    [\r\n        {\"id\":1}\r\n    ],\r\n    \"genero\":{ \"id\":1},\r\n    \"generoId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCharacters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/2/characters/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"2",
+						"characters",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCharacters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/1/characters/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"1",
+						"characters",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movieDetailsByFilters",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcnBpeGVsdHJvbkBnbWFpbC5jb20iLCJleHAiOjE2NjI5NDU2MjYsImlhdCI6MTY2MjkwOTYyNn0.mymH-sL4zNK0fHsBTC8sAjOU-xcUuSXOy44caQbSrBc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"srpixeltron@gmail.com\",\r\n    \"password\":\"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"srpixeltron@gmail.com\",\r\n    \"password\":\"password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

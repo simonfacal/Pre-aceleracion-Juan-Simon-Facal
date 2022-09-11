@@ -4,7 +4,6 @@ import com.alkemy.disney.disney.dto.CharacterDTO;
 import com.alkemy.disney.disney.dto.MovieBasicDTO;
 import com.alkemy.disney.disney.dto.MovieDTO;
 import com.alkemy.disney.disney.dto.MovieFiltersDTO;
-import com.alkemy.disney.disney.entity.GenreEntity;
 import com.alkemy.disney.disney.entity.MovieEntity;
 import com.alkemy.disney.disney.entity.CharacterEntity;
 import com.alkemy.disney.disney.exception.ParamNotFound;
@@ -17,8 +16,6 @@ import com.alkemy.disney.disney.repository.ICharacterRepository;
 import com.alkemy.disney.disney.repository.specifications.MovieSpecification;
 import com.alkemy.disney.disney.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -75,13 +72,6 @@ public class MovieService implements IMovieService {
 
     }
 
-    @Override
-    public List<MovieBasicDTO> getAll() {
-        List<MovieEntity>entities= movieRepository.findAll();
-        List<MovieBasicDTO>result= movieMapper.movieEntityList2BasicDTOList(entities);
-
-        return result;
-    }
     @Override
     public MovieDTO getDetailsById(Long id) {
         Optional<MovieEntity> movie= movieRepository.findById(id);

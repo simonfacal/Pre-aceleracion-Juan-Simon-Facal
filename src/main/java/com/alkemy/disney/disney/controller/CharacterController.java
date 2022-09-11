@@ -38,12 +38,6 @@ public class CharacterController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(characterUpdated);
     }
 
-
-    @GetMapping("/all")
-    public ResponseEntity<List<CharacterBasicDTO>> getAll() {
-        List<CharacterBasicDTO> characters = characterService.getAll();
-        return ResponseEntity.ok().body(characters);
-    }
     @GetMapping("/{id}")
     public ResponseEntity<CharacterDTO> getDetailsById(@PathVariable Long id)
     {

@@ -2,8 +2,7 @@ package com.alkemy.disney.disney.service;
 
 import com.alkemy.disney.disney.dto.MovieBasicDTO;
 import com.alkemy.disney.disney.dto.MovieDTO;
-import org.apache.coyote.Response;
-import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
@@ -12,8 +11,6 @@ public interface IMovieService {
     public MovieDTO save(MovieDTO dto);
     public void delete(Long id);
     public MovieDTO update(Long id, MovieDTO dto);
-
-    public List<MovieBasicDTO> getAll();
 
     public MovieDTO getDetailsById(Long id);
 

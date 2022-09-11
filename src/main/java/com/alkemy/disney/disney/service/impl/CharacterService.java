@@ -37,12 +37,7 @@ public class CharacterService implements ICharacterService {
         return result;
     }
 
-    @Override
-    public List<CharacterBasicDTO> getAll() {
-        List<CharacterEntity> entities=characterRepository.findAll();
-        List<CharacterBasicDTO>result= characterMapper.characterEntitySet2BasicDTOList(entities);
-        return result;
-    }
+
 
     @Override
     public void delete(Long id) {
